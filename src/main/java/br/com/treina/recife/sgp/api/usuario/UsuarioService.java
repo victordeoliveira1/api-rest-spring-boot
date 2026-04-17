@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import br.com.treina.recife.sgp.api.common.exception.RecursoNaoEncontradoException;
 import br.com.treina.recife.sgp.api.common.exception.RegraDeNegociosException;
@@ -16,13 +17,12 @@ public class UsuarioService {
     UsuarioRepository usuarioRepository;
 
     // POST
+    @Transactional
     public UsuarioResponseDTO criarUsuario(UsuarioRequestDTO dto) {
-        Optional<Usuario> usuarioOpt = usuarioRepository.findByCpf(dto.cpf());
-        if (usuarioOpt.isPresent()) {
+        if (usuarioRepository.findByCpf(dto.cpf()).isPresent()) {
             throw new RegraDeNegociosException("Já existe um usuário cadastrado com o CPF: " + dto.cpf());
         }
-        usuarioOpt = usuarioRepository.findByEmail(dto.email());
-        if (usuarioOpt.isPresent()) {
+        if (usuarioRepository.findByEmail(dto.email()).isPresent()) {
             throw new RegraDeNegociosException("Já existe um usuário cadastrado com o email: " + dto.email());
         }
         Usuario usuario = UsuarioMapper.toEntity(dto);
@@ -30,7 +30,7 @@ public class UsuarioService {
     }
 
     // GET
-    // TODO: PESQUISAR MAIS SOBRE O STREAM E O TO LIST
+    @Transactional(readOnly = true)
     public List<UsuarioResponseDTO> listarUsuarios() {
         List<Usuario> usuarios = usuarioRepository.findAll();
         return usuarios.stream()
@@ -38,6 +38,7 @@ public class UsuarioService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
     public UsuarioResponseDTO obterDadosDoUsuario(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Usuário não encontrado com ID: " + id));
@@ -45,9 +46,20 @@ public class UsuarioService {
     }
 
     // PUT
+    @Transactional
     public UsuarioResponseDTO atualizarUsuario(Long id, UsuarioRequestDTO dto) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Usuário não encontrado com ID: " + id));
+
+        Optional<Usuario> usuarioCpf = usuarioRepository.findByCpf(dto.cpf());
+        if (usuarioCpf.isPresent() && !usuarioCpf.get().getId().equals(id)) {
+            throw new RegraDeNegociosException("Já existe um usuário cadastrado com o CPF: " + dto.cpf());
+        }
+
+        Optional<Usuario> usuarioEmail = usuarioRepository.findByEmail(dto.email());
+        if (usuarioEmail.isPresent() && !usuarioEmail.get().getId().equals(id)) {
+            throw new RegraDeNegociosException("Já existe um usuário cadastrado com o email: " + dto.email());
+        }
 
         usuario.setNome(dto.nome());
         usuario.setCpf(dto.cpf());
@@ -61,6 +73,7 @@ public class UsuarioService {
     }
 
     // DELETE
+    @Transactional
     public void deletarUsuario(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RecursoNaoEncontradoException("Usuário não encontrado com ID: " + id));
