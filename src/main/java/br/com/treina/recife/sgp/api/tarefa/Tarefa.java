@@ -8,6 +8,8 @@ import br.com.treina.recife.sgp.api.projeto.Projeto;
 import br.com.treina.recife.sgp.api.usuario.Usuario;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -40,9 +42,11 @@ public class Tarefa {
     private LocalDate dataConclusao;
 
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private PrioridadeTarefa prioridade;
     
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private StatusTarefa status;
 
     @ManyToOne

@@ -86,7 +86,7 @@ public class TarefaService {
     @Transactional
     public void deletarTarefa(Long id) {
         Tarefa tarefa = tarefaRepository.findById(id)
-                .orElseThrow(() -> new RecursoNaoEncontradoException("Não foi encontrado um projeto com ID: " + id));
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Não foi encontrado uma tarefa com ID: " + id));
         tarefaRepository.delete(tarefa);
     }
 }

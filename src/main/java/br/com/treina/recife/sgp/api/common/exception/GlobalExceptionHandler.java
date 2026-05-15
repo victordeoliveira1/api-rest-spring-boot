@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import br.com.treina.recife.sgp.api.common.dto.ErroResponseDTO;
 import jakarta.servlet.http.HttpServletRequest;
-
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -37,6 +36,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(erro);
     }
 
+    @ExceptionHandler(Exception.class)
     public ResponseEntity<ErroResponseDTO> tratarErroGenerico(Exception ex, HttpServletRequest request) {
         ErroResponseDTO erro = new ErroResponseDTO(LocalDateTime.now(),
                 HttpStatus.INTERNAL_SERVER_ERROR.value(),
