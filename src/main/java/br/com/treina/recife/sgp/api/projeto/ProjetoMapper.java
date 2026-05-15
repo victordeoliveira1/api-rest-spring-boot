@@ -13,7 +13,7 @@ public class ProjetoMapper {
             return null;
         }
         LocalDate dataReferencia;
-        if (projeto.getStatus() == StatusProjeto.CONCLUIDO) {
+        if (projeto.getStatus() == StatusProjeto.CONCLUIDO && projeto.getDataConclusao() != null) {
             dataReferencia = projeto.getDataConclusao();
         } else {
             dataReferencia = LocalDate.now();

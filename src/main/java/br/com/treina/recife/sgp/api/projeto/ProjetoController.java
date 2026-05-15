@@ -2,7 +2,6 @@ package br.com.treina.recife.sgp.api.projeto;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("api/projetos")
+@RequiredArgsConstructor
 public class ProjetoController {
 
-    @Autowired
-    ProjetoService projetoService;
+    private final ProjetoService projetoService;
 
     @PostMapping
     public ResponseEntity<ProjetoResponseDTO> criarProjeto(@Valid @RequestBody ProjetoRequestDTO dto) {

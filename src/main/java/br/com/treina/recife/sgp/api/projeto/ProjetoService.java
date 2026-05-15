@@ -2,21 +2,21 @@ package br.com.treina.recife.sgp.api.projeto;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.treina.recife.sgp.api.common.exception.RecursoNaoEncontradoException;
 import br.com.treina.recife.sgp.api.usuario.Usuario;
 import br.com.treina.recife.sgp.api.usuario.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class ProjetoService {
-
-    @Autowired
-    ProjetoRepository projetoRepository;
-    @Autowired
-    UsuarioRepository usuarioRepository;
+    
+    private final ProjetoRepository projetoRepository;
+    
+    private final UsuarioRepository usuarioRepository;
 
     // POST
     @Transactional

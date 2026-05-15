@@ -2,7 +2,6 @@ package br.com.treina.recife.sgp.api.tarefa;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,16 +10,17 @@ import br.com.treina.recife.sgp.api.projeto.Projeto;
 import br.com.treina.recife.sgp.api.projeto.ProjetoRepository;
 import br.com.treina.recife.sgp.api.usuario.Usuario;
 import br.com.treina.recife.sgp.api.usuario.UsuarioRepository;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class TarefaService {
-
-    @Autowired
-    TarefaRepository tarefaRepository;
-    @Autowired
-    ProjetoRepository projetoRepository;
-    @Autowired
-    UsuarioRepository usuarioRepository;
+    
+    private final TarefaRepository tarefaRepository;
+    
+    private final ProjetoRepository projetoRepository;
+    
+    private final UsuarioRepository usuarioRepository;
 
     // POST
     @Transactional
@@ -69,7 +69,7 @@ public class TarefaService {
 
         Usuario usuario = usuarioRepository.findById(dto.usuarioId())
                 .orElseThrow(() -> new RecursoNaoEncontradoException(
-                        "Não foi encontrando nenhum usuário com ID: " + dto.usuarioId()));
+                        "Não foi encontrado nenhum usuário com ID: " + dto.usuarioId()));
 
         tarefa.setTitulo(dto.titulo());
         tarefa.setDescricao(dto.descricao());

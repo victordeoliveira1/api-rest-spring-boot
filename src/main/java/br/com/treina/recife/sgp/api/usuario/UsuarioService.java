@@ -3,18 +3,19 @@ package br.com.treina.recife.sgp.api.usuario;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.treina.recife.sgp.api.common.exception.RecursoNaoEncontradoException;
 import br.com.treina.recife.sgp.api.common.exception.RegraDeNegociosException;
+import lombok.RequiredArgsConstructor;
 
 @Service
+@RequiredArgsConstructor
 public class UsuarioService {
-
-    @Autowired
-    UsuarioRepository usuarioRepository;
+    
+    private final UsuarioRepository usuarioRepository;
 
     // POST
     @Transactional

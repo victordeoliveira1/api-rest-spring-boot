@@ -6,6 +6,9 @@ import br.com.treina.recife.sgp.api.usuario.UsuarioMapper;
 public class TarefaMapper {
 
     public static TarefaResponseDTO toDTO(Tarefa tarefa) {
+        if (tarefa == null) {
+            return null;
+        }
         return new TarefaResponseDTO(
                 tarefa.getId(),
                 tarefa.getTitulo(),
