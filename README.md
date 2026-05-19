@@ -1,59 +1,55 @@
-# Sistema de Gerenciamento de Projetos (SGP)
+# SGP - Project Management System API
 
-API REST desenvolvida com **Java + Spring Boot** para gerenciamento de usuários, projetos e tarefas.  
-O sistema permite acompanhar projetos, organizar atividades e controlar fluxos de trabalho de forma estruturada.
+REST API built with Java and Spring Boot for project management. The system allows tracking projects, organizing activities and controlling workflows in a structured way.
 
----
+## 📌 About
 
-## 📌 Sobre o Projeto
+This project was created focusing on backend development best practices, using domain-driven modular architecture, global exception handling, robust validations and professional code organization.
 
-Este projeto foi criado com foco em boas práticas de desenvolvimento backend utilizando arquitetura modular por domínio, tratamento global de exceções, validações robustas e organização profissional de código.
-
-Ideal para estudos de:
+Ideal for studying:
 
 - Spring Boot
-- APIs REST
+- REST APIs
 - Java Backend
 - JPA / Hibernate
 - DTO Pattern
 - Exception Handling
 - Clean Code
-- Arquitetura em Camadas
+- Layered Architecture
 
----
+## 🚀 Features
 
-## 🚀 Funcionalidades
+### 👤 Users
 
-### 👤 Usuários
-- Criar usuário
-- Buscar usuário por ID
-- Listar usuários
-- Atualizar usuário
-- Remover usuário
-- Controle de status do usuário
+- Create user
+- Find user by ID
+- List users
+- Update user
+- Remove user
+- User status control
 
-### 📁 Projetos
-- Criar projetos
-- Definir responsável
-- Atualizar dados do projeto
-- Alterar status
-- Listar projetos
-- Buscar projeto por ID
-- Excluir projetos
+### 📁 Projects
 
-### ✅ Tarefas
-- Criar tarefas vinculadas a projetos
-- Definir responsável
-- Alterar prioridade
-- Alterar status
-- Atualizar tarefa
-- Listar tarefas
-- Buscar tarefa por ID
-- Excluir tarefas
+- Create projects
+- Assign responsible
+- Update project data
+- Change status
+- List projects
+- Find project by ID
+- Delete projects
 
----
+### ✅ Tasks
 
-## 🛠️ Tecnologias Utilizadas
+- Create tasks linked to projects
+- Assign responsible
+- Change priority
+- Change status
+- Update task
+- List tasks
+- Find task by ID
+- Delete tasks
+
+## 🛠️ Technologies
 
 - Java 17
 - Spring Boot
@@ -65,9 +61,7 @@ Ideal para estudos de:
 - Maven
 - Lombok
 
----
-
-## 📂 Estrutura do Projeto
+## 📂 Project Structure
 
 ```bash
 src/main/java/br/com/treina/recife/sgp/api/
@@ -110,26 +104,24 @@ src/main/java/br/com/treina/recife/sgp/api/
 
 ---
 
-## 🧱 Arquitetura
+## 🧱 Architecture
 
-O projeto utiliza **arquitetura modular por domínio**, onde cada módulo contém seus próprios arquivos.
+The project uses domain-driven modular architecture, where each module contains its own files.
 
-### Módulos:
+### Modules:
 
-* `usuario` → entidade, controller, service, repository, mapper e DTOs
-* `projeto` → entidade, controller, service, repository, mapper e DTOs
-* `tarefa` → entidade, controller, service, repository, mapper e DTOs
+- `usuario` → entity, controller, service, repository, mapper and DTOs
+- `projeto` → entity, controller, service, repository, mapper and DTOs
+- `tarefa` → entity, controller, service, repository, mapper and DTOs
 
-### Compartilhado:
+### Shared:
 
-* `common` → exceções globais e DTOs compartilhados
-* `enums` → enums do sistema
+- `common` → global exceptions and shared DTOs
+- `enums` → system enums
 
----
+## 🔥 Main Endpoints
 
-## 🔥 Endpoints Principais
-
-### Usuários
+### Users
 
 ```http id="fd29w3"
 POST   /usuarios
@@ -139,7 +131,7 @@ PUT    /usuarios/{id}
 DELETE /usuarios/{id}
 ```
 
-### Projetos
+### Projects
 
 ```http id="3c0f7v"
 POST   /projetos
@@ -149,7 +141,7 @@ PUT    /projetos/{id}
 DELETE /projetos/{id}
 ```
 
-### Tarefas
+### Tasks
 
 ```http id="h6vayp"
 POST   /tarefas
@@ -161,27 +153,25 @@ DELETE /tarefas/{id}
 
 ---
 
-## ⚠️ Tratamento de Erros
+## ⚠️ Error Handling
 
-A aplicação possui tratamento global utilizando `@RestControllerAdvice`.
+The application has global error handling using `@RestControllerAdvice`.
 
-Exemplo:
+Example:
 
-```json id="j6vdf2"
+```json
 {
   "timestamp": "2026-04-27T12:00:00",
   "status": 404,
-  "erro": "Recurso não encontrado",
-  "mensagem": "Projeto não encontrado",
+  "erro": "Resource not found",
+  "mensagem": "Project not found",
   "path": "/projetos/99"
 }
 ```
 
----
+## ⚙️ Database Configuration
 
-## ⚙️ Configuração Banco de Dados
-
-No arquivo `application.properties`:
+In the `application.properties` file:
 
 ```properties
 spring.application.name=sgp-api
@@ -194,13 +184,13 @@ spring.datasource.password=root
 ```
 ---
 
-## 🎯 Objetivo do Projeto
+## 🎯 Project Goal
 
-Demonstrar domínio em desenvolvimento backend Java com Spring Boot através da construção de uma API realista, organizada e escalável.
+Demonstrate backend Java development skills with Spring Boot by building a realistic, organized and scalable API.
 
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻 Author
 
 Victor de Oliveira Alves
 
@@ -209,7 +199,7 @@ Victor de Oliveira Alves
 
 ---
 
-## 📄 Licença
+## 📄 License
 
-Projeto para fins educacionais e portfólio.
+Project for educational and portfolio purposes.
 
